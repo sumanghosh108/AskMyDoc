@@ -1,0 +1,76 @@
+{
+    "version": "1.0",
+    "description": "Golden evaluation dataset for Ask My Doc RAG system. Expand to 100-200 Q&A pairs for production evaluation.",
+    "dataset": [
+        {
+            "id": 1,
+            "question": "What are the three main types of machine learning?",
+            "ground_truth_answer": "The three main types of machine learning are supervised learning, unsupervised learning, and reinforcement learning.",
+            "expected_sources": ["machine_learning_intro.md"],
+            "difficulty": "easy"
+        },
+        {
+            "id": 2,
+            "question": "What is the F1 score in machine learning?",
+            "ground_truth_answer": "The F1 score is the harmonic mean of precision and recall, used as a classification metric.",
+            "expected_sources": ["machine_learning_intro.md"],
+            "difficulty": "easy"
+        },
+        {
+            "id": 3,
+            "question": "How does the self-attention mechanism work in transformers?",
+            "ground_truth_answer": "Self-attention allows each position in the sequence to attend to all other positions. Query (Q), Key (K), and Value (V) matrices are computed from input embeddings. Attention weights are computed as softmax(QK^T / sqrt(d_k)), and the output is the weighted sum of values.",
+            "expected_sources": ["nlp_overview.md"],
+            "difficulty": "medium"
+        },
+        {
+            "id": 4,
+            "question": "What is Retrieval-Augmented Generation (RAG) and what are its benefits?",
+            "ground_truth_answer": "RAG combines information retrieval and text generation. It retrieves relevant documents from a knowledge base, augments the input prompt with retrieved context, and generates an answer grounded in the retrieved information. Benefits include reducing hallucinations, easy knowledge updates without retraining, and source attribution.",
+            "expected_sources": ["nlp_overview.md"],
+            "difficulty": "medium"
+        },
+        {
+            "id": 5,
+            "question": "What are the common deep learning architectures and their specializations?",
+            "ground_truth_answer": "Common deep learning architectures include: CNNs (specialized for image and spatial data), RNNs (for sequential data like text and time series), Transformers (attention-based models for NLP), and GANs (two networks competing to generate realistic data).",
+            "expected_sources": ["machine_learning_intro.md"],
+            "difficulty": "medium"
+        },
+        {
+            "id": 6,
+            "question": "What is the difference between extractive and abstractive summarization?",
+            "ground_truth_answer": "Extractive summarization selects and concatenates the most important sentences from the source text, while abstractive summarization generates new sentences that capture the essence of the source text.",
+            "expected_sources": ["nlp_overview.md"],
+            "difficulty": "easy"
+        },
+        {
+            "id": 7,
+            "question": "What are the best practices for machine learning model development?",
+            "ground_truth_answer": "Best practices include: ensuring data quality (clean, representative, sufficient data), feature engineering, using k-fold cross-validation, applying regularization (L1/L2) to prevent overfitting, systematic hyperparameter tuning, and using model interpretability techniques like SHAP or LIME.",
+            "expected_sources": ["machine_learning_intro.md"],
+            "difficulty": "medium"
+        },
+        {
+            "id": 8,
+            "question": "What is Named Entity Recognition and what categories does it identify?",
+            "ground_truth_answer": "Named Entity Recognition (NER) identifies and classifies named entities in text into predefined categories such as person names, organizations, locations, dates, and quantities. It is essential for information extraction from unstructured text.",
+            "expected_sources": ["nlp_overview.md"],
+            "difficulty": "easy"
+        },
+        {
+            "id": 9,
+            "question": "Compare supervised and unsupervised learning approaches.",
+            "ground_truth_answer": "Supervised learning uses labeled data where input is paired with correct output, and the algorithm learns to map inputs to outputs. Common algorithms include linear regression, decision trees, and neural networks. Unsupervised learning works with unlabeled data, trying to find hidden patterns or groupings. Key techniques include K-means clustering, hierarchical clustering, and PCA.",
+            "expected_sources": ["machine_learning_intro.md"],
+            "difficulty": "medium"
+        },
+        {
+            "id": 10,
+            "question": "What are the key components of reinforcement learning?",
+            "ground_truth_answer": "Key components are: Agent (the learner/decision maker), Environment (the world the agent interacts with), State (current situation), Action (choices available), Reward (feedback signal), and Policy (strategy mapping states to actions).",
+            "expected_sources": ["machine_learning_intro.md"],
+            "difficulty": "easy"
+        }
+    ]
+}
