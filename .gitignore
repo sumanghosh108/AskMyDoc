@@ -5,6 +5,9 @@
 # ChromaDB persistence
 chroma_db/
 
+# logs
+logs/
+
 # Python
 __pycache__/
 *.pyc

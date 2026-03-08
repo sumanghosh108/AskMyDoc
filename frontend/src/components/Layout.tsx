@@ -44,7 +44,7 @@ export default function Layout() {
             {/* Logo and Desktop Navigation */}
             <div className="flex items-center gap-8">
               <div className="flex items-center">
-                <h1 className="text-xl font-bold text-primary-600">RAG System</h1>
+                <h1 className="text-xl font-bold text-primary-600">AskMyDoc</h1>
               </div>
               
               {/* Desktop Navigation */}

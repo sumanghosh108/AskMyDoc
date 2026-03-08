@@ -146,6 +146,7 @@ export default function QueryInterface({ onSubmit, isLoading }: QueryInterfacePr
           placeholder="Enter your question here..."
           className={`
             block w-full rounded-md shadow-sm
+            text-gray-900
             focus:ring-2 focus:ring-blue-500 focus:border-blue-500
             disabled:bg-gray-100 disabled:cursor-not-allowed
             ${validationError ? 'border-red-300' : 'border-gray-300'}
@@ -272,6 +273,7 @@ export default function QueryInterface({ onSubmit, isLoading }: QueryInterfacePr
             disabled={isLoading}
             className={`
               block w-full rounded-md shadow-sm
+              text-gray-900
               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
               disabled:bg-gray-100 disabled:cursor-not-allowed
               ${topKError ? 'border-red-300' : 'border-gray-300'}
