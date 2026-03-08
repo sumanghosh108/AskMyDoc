@@ -1,0 +1,132 @@
+AskMyDoc/ - Production-Grade RAG System
+│
+├── 📄 README.md                      # Project overview and quick start
+├── 📄 requirements.txt               # Python dependencies
+├── 📄 main.py                        # CLI entry point
+├── 📄 task.md                        # Original task specification
+├── 📄 .env.example                   # Example environment configuration
+├── 📄 .gitignore                     # Git ignore rules
+├── 📄 DIRECTORY_TREE.txt            # This file
+│
+├── 📁 chroma_db/                     # Vector database storage (auto-generated)
+│   ├── chroma.sqlite3               # Metadata database
+│   └── [uuid]/                      # Vector index files
+│       ├── data_level0.bin
+│       ├── header.bin
+│       ├── length.bin
+│       └── link_lists.bin
+│
+├── 📁 config/                        # Configuration files
+│   └── prompts_v1.yaml              # Prompt templates (versioned)
+│
+├── 📁 docs/                          # 📚 Documentation
+│   ├── ARCHITECTURE.md              # System architecture and design patterns
+│   ├── API_GUIDE.md                 # REST API documentation
+│   ├── GETTING_STARTED.md           # Step-by-step setup guide
+│   ├── IMPLEMENTATION_SUMMARY.md    # Feature implementation details
+│   ├── PROJECT_STRUCTURE.md         # Directory organization
+│   ├── QUICK_REFERENCE.md           # Command cheat sheet
+│   ├── README.md                    # Original README
+│   ├── USAGE_GUIDE.md               # Comprehensive usage guide
+│   └── VERIFICATION_CHECKLIST.md    # Quality assurance checklist
+│
+├── 📁 eval/                          # Evaluation pipeline
+│   ├── evaluate.py                  # Basic evaluation script
+│   ├── golden_dataset.json          # Test dataset
+│   └── ragas_evaluate.py            # RAGAS evaluation script
+│
+├── 📁 logs/                          # Application logs (auto-generated)
+│   ├── app.log                      # Main application log
+│   └── run_*.log                    # Run-specific logs
+│
+├── 📁 sample_docs/                   # Sample documents for testing
+│   ├── machine_learning_intro.md
+│   └── nlp_overview.md
+│
+├── 📁 src/                           # 🔧 Source Code (Modular Architecture)
+│   ├── __init__.py
+│   │
+│   ├── 📁 api/                       # REST API Layer
+│   │   ├── __init__.py
+│   │   ├── router.py                # FastAPI routes and endpoints
+│   │   └── schemas.py               # Pydantic request/response models
+│   │
+│   ├── 📁 caching/                   # Caching Layer
+│   │   ├── __init__.py
+│   │   └── redis_cache.py           # Redis cache with graceful fallback
+│   │
+│   ├── 📁 context/                   # Context Management
+│   │   ├── __init__.py
+│   │   └── builder.py               # Context optimization and formatting
+│   │
+│   ├── 📁 core/                      # Core Configuration
+│   │   ├── __init__.py
+│   │   └── config.py                # Centralized configuration management
+│   │
+│   ├── 📁 generation/                # Answer Generation
+│   │   ├── __init__.py
+│   │   ├── generator.py             # Basic generator
+│   │   └── enhanced_generator.py    # Orchestrator with all features
+│   │
+│   ├── 📁 indexing/                  # Document Ingestion
+│   │   ├── __init__.py
+│   │   └── ingest.py                # Document loading, chunking, embedding
+│   │
+│   ├── 📁 multi_hop/                 # Multi-Hop Reasoning
+│   │   ├── __init__.py
+│   │   └── reasoning_controller.py  # Multi-step retrieval logic
+│   │
+│   ├── 📁 observability/             # Monitoring and Metrics
+│   │   ├── __init__.py
+│   │   └── latency_tracker.py       # Performance tracking
+│   │
+│   ├── 📁 query_rewriter/            # Query Enhancement
+│   │   ├── __init__.py
+│   │   └── rewrite_engine.py        # Query rewriting with LLM
+│   │
+│   ├── 📁 retrieval/                 # Retrieval Pipeline
+│   │   ├── __init__.py
+│   │   ├── base.py                  # Base retriever interface
+│   │   ├── hybrid.py                # Hybrid retrieval (BM25 + Vector)
+│   │   └── reranker.py              # Cross-encoder reranking
+│   │
+│   └── 📁 utils/                     # Utilities
+│       ├── __init__.py
+│       └── logger.py                # Structured logging
+│
+└── 📁 tests/                         # 🧪 Test Suite
+    ├── __init__.py
+    ├── test_api.py                  # API endpoint tests
+    └── chat_api.py                  # Interactive chat interface
+
+═══════════════════════════════════════════════════════════════════
+
+📊 Module Statistics:
+   - Total Modules: 11
+   - API Endpoints: 6
+   - Design Patterns: 7
+   - Documentation Files: 9
+
+🎯 Key Features:
+   ✅ Modular Architecture
+   ✅ Production-Ready
+   ✅ Comprehensive Documentation
+   ✅ REST API
+   ✅ Caching Layer
+   ✅ Observability
+   ✅ Evaluation Pipeline
+
+🚀 Quick Start:
+   1. pip install -r requirements.txt
+   2. Copy .env.example to .env and configure
+   3. python main.py ingest --source ./sample_docs/
+   4. python main.py query "Your question"
+   5. python main.py serve (for API)
+
+📚 Documentation:
+   - Getting Started: docs/GETTING_STARTED.md
+   - Architecture: docs/ARCHITECTURE.md
+   - API Guide: docs/API_GUIDE.md
+   - Project Structure: docs/PROJECT_STRUCTURE.md
+
+═══════════════════════════════════════════════════════════════════

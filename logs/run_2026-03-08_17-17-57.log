@@ -1,0 +1,15 @@
+{"event": "Starting FastAPI server", "filename": "main.py", "func_name": "main", "host": "0.0.0.0", "level": "info", "lineno": 262, "logger": "__main__", "port": 8000, "run_id": "2026-03-08_17-17-57", "timestamp": "2026-03-08T11:47:57.337764Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:47:57.786302Z"}
+{"event": "Form data requires \"python-multipart\" to be installed. \nYou can install \"python-multipart\" with: \n\npip install python-multipart\n", "filename": "utils.py", "func_name": "ensure_multipart_is_installed", "level": "error", "lineno": 117, "logger": "fastapi", "timestamp": "2026-03-08T11:47:58.310940Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:47:58.901826Z"}
+{"event": "51 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:29.234533Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:29.769771Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:30.121552Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:33.854752Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:37.339333Z"}
+{"event": "2 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:38.664162Z"}
+{"event": "13 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:39.017919Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:39.379517Z"}
+{"event": "3 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:48:58.004181Z"}
+{"event": "5 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:49:08.470305Z"}
+{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:54:39.394795Z"}

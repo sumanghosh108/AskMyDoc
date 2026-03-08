@@ -20,8 +20,8 @@ from typing import Optional
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.config import EVAL_THRESHOLD, GOLDEN_DATASET_PATH, validate_config
-from src.generator import generate_answer
+from src.core.config import EVAL_THRESHOLD, GOLDEN_DATASET_PATH, validate_config
+from src.generation.generator import generate_answer
 
 
 def load_golden_dataset(path: Optional[str] = None) -> list[dict]:

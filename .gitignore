@@ -1,5 +1,6 @@
 # Environment
 .env
+.env.example
 
 # ChromaDB persistence
 chroma_db/
@@ -27,3 +28,23 @@ Thumbs.db
 
 # Eval results
 eval/results/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.kiro

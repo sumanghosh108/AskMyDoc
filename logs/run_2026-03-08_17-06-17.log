@@ -1,0 +1,9 @@
+{"event": "Starting FastAPI server", "filename": "main.py", "func_name": "main", "host": "0.0.0.0", "level": "info", "lineno": 262, "logger": "__main__", "port": 8000, "run_id": "2026-03-08_17-06-17", "timestamp": "2026-03-08T11:36:17.960201Z"}
+{"event": "2 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:36:18.548125Z"}
+{"event": "6 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:36:18.902679Z"}
+{"event": "9 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:36:19.918759Z"}
+{"event": "8110 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:36:23.925335Z"}
+{"event": "23045 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:37:39.678669Z"}
+{"event": "797 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:37:47.530689Z"}
+{"event": "238 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:37:49.715826Z"}
+{"event": "43 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:37:50.085671Z"}

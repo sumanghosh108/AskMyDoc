@@ -1,76 +1,907 @@
 {
     "version": "1.0",
-    "description": "Golden evaluation dataset for Ask My Doc RAG system. Expand to 100-200 Q&A pairs for production evaluation.",
+    "description": "Golden evaluation dataset for Ask My Doc RAG system — 100 Q&A pairs covering machine_learning_intro.md and nlp_overview.md",
     "dataset": [
         {
             "id": 1,
             "question": "What are the three main types of machine learning?",
             "ground_truth_answer": "The three main types of machine learning are supervised learning, unsupervised learning, and reinforcement learning.",
-            "expected_sources": ["machine_learning_intro.md"],
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
             "difficulty": "easy"
         },
         {
             "id": 2,
             "question": "What is the F1 score in machine learning?",
             "ground_truth_answer": "The F1 score is the harmonic mean of precision and recall, used as a classification metric.",
-            "expected_sources": ["machine_learning_intro.md"],
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
             "difficulty": "easy"
         },
         {
             "id": 3,
             "question": "How does the self-attention mechanism work in transformers?",
             "ground_truth_answer": "Self-attention allows each position in the sequence to attend to all other positions. Query (Q), Key (K), and Value (V) matrices are computed from input embeddings. Attention weights are computed as softmax(QK^T / sqrt(d_k)), and the output is the weighted sum of values.",
-            "expected_sources": ["nlp_overview.md"],
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
             "difficulty": "medium"
         },
         {
             "id": 4,
             "question": "What is Retrieval-Augmented Generation (RAG) and what are its benefits?",
             "ground_truth_answer": "RAG combines information retrieval and text generation. It retrieves relevant documents from a knowledge base, augments the input prompt with retrieved context, and generates an answer grounded in the retrieved information. Benefits include reducing hallucinations, easy knowledge updates without retraining, and source attribution.",
-            "expected_sources": ["nlp_overview.md"],
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
             "difficulty": "medium"
         },
         {
             "id": 5,
             "question": "What are the common deep learning architectures and their specializations?",
             "ground_truth_answer": "Common deep learning architectures include: CNNs (specialized for image and spatial data), RNNs (for sequential data like text and time series), Transformers (attention-based models for NLP), and GANs (two networks competing to generate realistic data).",
-            "expected_sources": ["machine_learning_intro.md"],
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
             "difficulty": "medium"
         },
         {
             "id": 6,
             "question": "What is the difference between extractive and abstractive summarization?",
             "ground_truth_answer": "Extractive summarization selects and concatenates the most important sentences from the source text, while abstractive summarization generates new sentences that capture the essence of the source text.",
-            "expected_sources": ["nlp_overview.md"],
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
             "difficulty": "easy"
         },
         {
             "id": 7,
             "question": "What are the best practices for machine learning model development?",
             "ground_truth_answer": "Best practices include: ensuring data quality (clean, representative, sufficient data), feature engineering, using k-fold cross-validation, applying regularization (L1/L2) to prevent overfitting, systematic hyperparameter tuning, and using model interpretability techniques like SHAP or LIME.",
-            "expected_sources": ["machine_learning_intro.md"],
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
             "difficulty": "medium"
         },
         {
             "id": 8,
             "question": "What is Named Entity Recognition and what categories does it identify?",
             "ground_truth_answer": "Named Entity Recognition (NER) identifies and classifies named entities in text into predefined categories such as person names, organizations, locations, dates, and quantities. It is essential for information extraction from unstructured text.",
-            "expected_sources": ["nlp_overview.md"],
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
             "difficulty": "easy"
         },
         {
             "id": 9,
             "question": "Compare supervised and unsupervised learning approaches.",
             "ground_truth_answer": "Supervised learning uses labeled data where input is paired with correct output, and the algorithm learns to map inputs to outputs. Common algorithms include linear regression, decision trees, and neural networks. Unsupervised learning works with unlabeled data, trying to find hidden patterns or groupings. Key techniques include K-means clustering, hierarchical clustering, and PCA.",
-            "expected_sources": ["machine_learning_intro.md"],
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
             "difficulty": "medium"
         },
         {
             "id": 10,
             "question": "What are the key components of reinforcement learning?",
             "ground_truth_answer": "Key components are: Agent (the learner/decision maker), Environment (the world the agent interacts with), State (current situation), Action (choices available), Reward (feedback signal), and Policy (strategy mapping states to actions).",
-            "expected_sources": ["machine_learning_intro.md"],
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
             "difficulty": "easy"
+        },
+        {
+            "id": 11,
+            "question": "What is machine learning?",
+            "ground_truth_answer": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing computer programs that can access data and use it to learn for themselves.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 12,
+            "question": "What is linear regression used for?",
+            "ground_truth_answer": "Linear regression is a supervised learning algorithm used for predicting continuous values.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 13,
+            "question": "What is logistic regression used for?",
+            "ground_truth_answer": "Logistic regression is a supervised learning algorithm used for binary classification problems.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 14,
+            "question": "How do decision trees work?",
+            "ground_truth_answer": "Decision trees are tree-based models that split data based on feature values. They are a supervised learning algorithm.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 15,
+            "question": "What is a random forest?",
+            "ground_truth_answer": "A random forest is an ensemble of decision trees used for improved accuracy in supervised learning.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 16,
+            "question": "What are Support Vector Machines?",
+            "ground_truth_answer": "Support Vector Machines (SVM) are supervised learning algorithms that find the optimal hyperplane to separate classes.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 17,
+            "question": "What are neural networks?",
+            "ground_truth_answer": "Neural networks are multi-layered models inspired by the human brain, used as supervised learning algorithms.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 18,
+            "question": "What is K-Means clustering?",
+            "ground_truth_answer": "K-Means clustering is an unsupervised learning technique that groups data into k clusters based on similarity.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 19,
+            "question": "What is hierarchical clustering?",
+            "ground_truth_answer": "Hierarchical clustering is an unsupervised learning technique that builds a tree of clusters.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 20,
+            "question": "What is Principal Component Analysis (PCA)?",
+            "ground_truth_answer": "PCA is an unsupervised learning technique that reduces dimensionality while preserving variance.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 21,
+            "question": "What are autoencoders?",
+            "ground_truth_answer": "Autoencoders are neural networks that learn compressed representations of data, used as an unsupervised learning technique.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 22,
+            "question": "What is accuracy as a classification metric?",
+            "ground_truth_answer": "Accuracy is the proportion of correct predictions out of all predictions made.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 23,
+            "question": "What is precision in classification?",
+            "ground_truth_answer": "Precision measures of predicted positives, how many are actually positive.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 24,
+            "question": "What is recall in classification?",
+            "ground_truth_answer": "Recall measures of actual positives, how many were correctly predicted.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 25,
+            "question": "What is ROC-AUC?",
+            "ground_truth_answer": "ROC-AUC is the area under the Receiver Operating Characteristic curve, used as a classification metric.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 26,
+            "question": "What is Mean Squared Error?",
+            "ground_truth_answer": "Mean Squared Error (MSE) is a regression metric that measures the average squared difference between predicted and actual values.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 27,
+            "question": "What is RMSE?",
+            "ground_truth_answer": "Root Mean Squared Error (RMSE) is the square root of Mean Squared Error, used as a regression metric.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 28,
+            "question": "What is Mean Absolute Error?",
+            "ground_truth_answer": "Mean Absolute Error (MAE) is a regression metric that measures the average absolute difference between predicted and actual values.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 29,
+            "question": "What is the R-squared score?",
+            "ground_truth_answer": "The R² score is a regression metric that measures the proportion of variance explained by the model.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 30,
+            "question": "What is deep learning?",
+            "ground_truth_answer": "Deep learning is a subset of machine learning that uses neural networks with many layers (deep neural networks). It has achieved remarkable success in areas like computer vision, natural language processing, and speech recognition.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 31,
+            "question": "What are Convolutional Neural Networks specialized for?",
+            "ground_truth_answer": "Convolutional Neural Networks (CNNs) are specialized for image and spatial data processing.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 32,
+            "question": "What are Recurrent Neural Networks designed for?",
+            "ground_truth_answer": "Recurrent Neural Networks (RNNs) are designed for sequential data like text and time series.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 33,
+            "question": "What are Generative Adversarial Networks?",
+            "ground_truth_answer": "Generative Adversarial Networks (GANs) consist of two networks competing to generate realistic data.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 34,
+            "question": "Why is data quality important in machine learning?",
+            "ground_truth_answer": "Data quality is important because training data should be clean, representative, and sufficiently large to build effective models.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 35,
+            "question": "What is feature engineering?",
+            "ground_truth_answer": "Feature engineering is the process of creating informative features that capture relevant patterns in the data, which is a best practice in machine learning.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 36,
+            "question": "What is cross-validation?",
+            "ground_truth_answer": "Cross-validation, specifically k-fold cross-validation, is a technique used to get reliable performance estimates for machine learning models.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 37,
+            "question": "What is regularization and why is it used?",
+            "ground_truth_answer": "Regularization involves techniques like L1/L2 regularization applied to prevent overfitting in machine learning models.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 38,
+            "question": "What is hyperparameter tuning?",
+            "ground_truth_answer": "Hyperparameter tuning is the process of systematically searching for optimal model parameters, which is a best practice in machine learning.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 39,
+            "question": "What are SHAP and LIME?",
+            "ground_truth_answer": "SHAP and LIME are model interpretability techniques used to understand model decisions in machine learning.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 40,
+            "question": "What is Natural Language Processing?",
+            "ground_truth_answer": "Natural Language Processing is a field at the intersection of computer science, artificial intelligence, and linguistics. Its primary goal is to enable computers to understand, interpret, and generate human language in a meaningful way.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 41,
+            "question": "What is text classification?",
+            "ground_truth_answer": "Text classification assigns predefined categories to text documents. Applications include spam detection, sentiment analysis, and topic categorization.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 42,
+            "question": "What approaches are used for text classification?",
+            "ground_truth_answer": "Common approaches for text classification include bag-of-words models, TF-IDF with classic classifiers, and modern transformer-based models like BERT.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 43,
+            "question": "What is machine translation?",
+            "ground_truth_answer": "Machine translation automatically translates text from one language to another. Modern neural machine translation systems use encoder-decoder architectures with attention mechanisms, achieving near-human quality for many language pairs.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 44,
+            "question": "What is text summarization?",
+            "ground_truth_answer": "Text summarization creates concise summaries of longer documents. There are two main approaches: extractive summarization (selecting important sentences) and abstractive summarization (generating new sentences).",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 45,
+            "question": "When was the transformer architecture introduced?",
+            "ground_truth_answer": "The transformer architecture was introduced in the paper 'Attention Is All You Need' in 2017.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 46,
+            "question": "What is multi-head attention?",
+            "ground_truth_answer": "Multiple attention heads allow the model to jointly attend to information from different representation subspaces, providing richer representations than single-head attention.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 47,
+            "question": "What is positional encoding in transformers?",
+            "ground_truth_answer": "Since transformers process all positions simultaneously (unlike RNNs), positional encodings are added to input embeddings to inject information about token positions in the sequence.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 48,
+            "question": "What are Large Language Models?",
+            "ground_truth_answer": "Large Language Models are transformer-based models trained on vast amounts of text data.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 49,
+            "question": "What is the GPT series?",
+            "ground_truth_answer": "The GPT series from OpenAI consists of autoregressive models trained to predict the next token.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 50,
+            "question": "What is BERT?",
+            "ground_truth_answer": "BERT is a bidirectional model from Google pre-trained with masked language modeling.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 51,
+            "question": "What is T5?",
+            "ground_truth_answer": "T5 is a text-to-text framework from Google that treats all tasks as text generation.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 52,
+            "question": "What is LLaMA?",
+            "ground_truth_answer": "LLaMA is an open-source large language model family from Meta.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 53,
+            "question": "What is Gemini?",
+            "ground_truth_answer": "Gemini is a multimodal model from Google capable of processing text, images, and code.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 54,
+            "question": "What is perplexity in NLP?",
+            "ground_truth_answer": "Perplexity measures how well a language model predicts text. Lower perplexity is better.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 55,
+            "question": "What is the BLEU score?",
+            "ground_truth_answer": "BLEU score evaluates machine translation quality by comparing generated text to reference translations.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 56,
+            "question": "What is the ROUGE score?",
+            "ground_truth_answer": "ROUGE score measures overlap between generated and reference summaries, used for evaluating text summarization.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 57,
+            "question": "What are extrinsic metrics in NLP evaluation?",
+            "ground_truth_answer": "Extrinsic metrics include task-specific accuracy, F1, or other metrics depending on the downstream application, as well as human evaluation which is the gold standard for assessing quality, fluency, and relevance.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 58,
+            "question": "How do the three steps of RAG work together?",
+            "ground_truth_answer": "RAG works in three steps: first it retrieves relevant documents from a knowledge base given a user query, then it augments the input prompt with the retrieved context, and finally it generates an answer grounded in the retrieved information.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 59,
+            "question": "Why does RAG reduce hallucinations?",
+            "ground_truth_answer": "RAG reduces hallucinations because instead of relying solely on knowledge stored in model parameters, it retrieves relevant documents from a knowledge base and generates answers grounded in the retrieved information, providing source attribution.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 60,
+            "question": "How does reinforcement learning differ from supervised learning?",
+            "ground_truth_answer": "In supervised learning, the algorithm is trained on labeled data with input paired with correct output. In reinforcement learning, an agent learns to make decisions by interacting with an environment, receiving rewards or penalties based on its actions and learning to maximize cumulative reward over time.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 61,
+            "question": "What classification metrics are available for evaluating ML models?",
+            "ground_truth_answer": "Classification metrics include accuracy (proportion of correct predictions), precision (of predicted positives, how many are actually positive), recall (of actual positives, how many were correctly predicted), F1 score (harmonic mean of precision and recall), and ROC-AUC (area under the Receiver Operating Characteristic curve).",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 62,
+            "question": "What regression metrics are used in machine learning?",
+            "ground_truth_answer": "Regression metrics include MSE (average squared difference between predicted and actual values), RMSE (square root of MSE), MAE (average absolute difference), and R² score (proportion of variance explained by the model).",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 63,
+            "question": "List all supervised learning algorithms mentioned in the documents.",
+            "ground_truth_answer": "The supervised learning algorithms mentioned are linear regression, logistic regression, decision trees, random forests, support vector machines (SVM), and neural networks.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 64,
+            "question": "List all unsupervised learning techniques mentioned.",
+            "ground_truth_answer": "The unsupervised learning techniques mentioned are K-Means clustering, hierarchical clustering, Principal Component Analysis (PCA), and autoencoders.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 65,
+            "question": "What are the core NLP tasks described in the documents?",
+            "ground_truth_answer": "The core NLP tasks described are text classification, Named Entity Recognition (NER), machine translation, and text summarization.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 66,
+            "question": "What notable Large Language Models are listed, and who developed each?",
+            "ground_truth_answer": "The notable LLMs listed are: GPT series (OpenAI), BERT (Google), T5 (Google), LLaMA (Meta), and Gemini (Google).",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 67,
+            "question": "How does self-attention differ from RNNs in handling sequences?",
+            "ground_truth_answer": "Self-attention allows each position in the sequence to attend to all other positions, enabling the model to capture long-range dependencies more effectively than RNNs. Transformers process all positions simultaneously, unlike RNNs which process sequentially.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 68,
+            "question": "What is the relationship between AI, machine learning, and deep learning?",
+            "ground_truth_answer": "Machine learning is a subset of artificial intelligence (AI), and deep learning is a subset of machine learning that uses neural networks with many layers (deep neural networks).",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 69,
+            "question": "What applications of text classification are mentioned?",
+            "ground_truth_answer": "Applications of text classification include spam detection, sentiment analysis, and topic categorization.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 70,
+            "question": "How do modern neural machine translation systems work?",
+            "ground_truth_answer": "Modern neural machine translation systems use encoder-decoder architectures with attention mechanisms, achieving near-human quality for many language pairs.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 71,
+            "question": "What areas has deep learning achieved success in?",
+            "ground_truth_answer": "Deep learning has achieved remarkable success in areas like computer vision, natural language processing, and speech recognition.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 72,
+            "question": "What is the role of the agent in reinforcement learning?",
+            "ground_truth_answer": "The agent is the learner or decision maker in reinforcement learning. It interacts with the environment, receives rewards or penalties based on its actions, and learns to maximize cumulative reward over time.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 73,
+            "question": "What is a policy in reinforcement learning?",
+            "ground_truth_answer": "A policy is a strategy that maps states to actions in reinforcement learning.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 74,
+            "question": "What is the reward signal in reinforcement learning?",
+            "ground_truth_answer": "The reward is the feedback signal from the environment that the agent uses to learn which actions are beneficial.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 75,
+            "question": "How do transformers handle positional information unlike RNNs?",
+            "ground_truth_answer": "Since transformers process all positions simultaneously (unlike RNNs which process sequentially), positional encodings are added to input embeddings to inject information about token positions in the sequence.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 76,
+            "question": "What is the advantage of multi-head attention over single-head attention?",
+            "ground_truth_answer": "Multiple attention heads allow the model to jointly attend to information from different representation subspaces, providing richer representations than single-head attention.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 77,
+            "question": "What are intrinsic metrics used for in NLP evaluation?",
+            "ground_truth_answer": "Intrinsic metrics in NLP include perplexity (measures how well a language model predicts text), BLEU score (evaluates machine translation quality), and ROUGE score (measures overlap between generated and reference summaries).",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 78,
+            "question": "Why is human evaluation considered the gold standard in NLP?",
+            "ground_truth_answer": "Human evaluation is the gold standard for assessing quality, fluency, and relevance in NLP tasks.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 79,
+            "question": "What paper introduced the transformer architecture?",
+            "ground_truth_answer": "The transformer architecture was introduced in the paper 'Attention Is All You Need' published in 2017.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 80,
+            "question": "How does masked language modeling work in BERT?",
+            "ground_truth_answer": "BERT is a bidirectional model pre-trained with masked language modeling, which allows it to learn contextual representations by predicting masked tokens in a sequence.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 81,
+            "question": "How does the GPT series differ from BERT in training approach?",
+            "ground_truth_answer": "The GPT series uses autoregressive training to predict the next token, while BERT uses bidirectional masked language modeling to predict masked tokens.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 82,
+            "question": "What are the key components of the transformer architecture?",
+            "ground_truth_answer": "Key components of the transformer architecture include the self-attention mechanism, multi-head attention, and positional encoding.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 83,
+            "question": "What is the attention weight formula in self-attention?",
+            "ground_truth_answer": "Attention weights are computed as softmax(QK^T / sqrt(d_k)), where Q is the query matrix, K is the key matrix, and d_k is the dimension of the keys.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 84,
+            "question": "What makes Gemini different from other LLMs?",
+            "ground_truth_answer": "Gemini is a multimodal model from Google capable of processing text, images, and code, unlike many other LLMs that primarily focus on text.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 85,
+            "question": "What is the T5 framework's approach to NLP tasks?",
+            "ground_truth_answer": "T5 uses a text-to-text framework that treats all tasks as text generation, providing a unified approach to various NLP tasks.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 86,
+            "question": "How do ensemble methods improve accuracy?",
+            "ground_truth_answer": "Random forests, which are an ensemble of decision trees, are used for improved accuracy in supervised learning by combining multiple models.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 87,
+            "question": "What is the difference between L1 and L2 regularization in context?",
+            "ground_truth_answer": "L1 and L2 regularization are techniques applied to prevent overfitting in machine learning models. They are listed as best practices for model development.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 88,
+            "question": "What categories does NER classify entities into?",
+            "ground_truth_answer": "NER classifies named entities into predefined categories such as person names, organizations, locations, dates, and quantities.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 89,
+            "question": "Why is NER essential for information extraction?",
+            "ground_truth_answer": "NER is essential for information extraction from unstructured text because it identifies and classifies named entities into predefined categories.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 90,
+            "question": "What is the relationship between precision and recall?",
+            "ground_truth_answer": "Precision measures of predicted positives how many are actually positive, while recall measures of actual positives how many were correctly predicted. The F1 score is the harmonic mean of precision and recall, balancing both metrics.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 91,
+            "question": "How does RAG allow easy knowledge updates?",
+            "ground_truth_answer": "RAG allows easy knowledge updates without retraining because it retrieves relevant documents from a knowledge base rather than relying solely on knowledge stored in model parameters. The knowledge base can be updated independently.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 92,
+            "question": "What are the advantages of using transformers over RNNs for NLP?",
+            "ground_truth_answer": "Transformers use self-attention which allows each position to attend to all other positions simultaneously, enabling the model to capture long-range dependencies more effectively than RNNs. They have become the foundation of modern NLP.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 93,
+            "question": "What is the role of the environment in reinforcement learning?",
+            "ground_truth_answer": "The environment is the world the agent interacts with in reinforcement learning. The agent receives rewards or penalties from the environment based on its actions.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 94,
+            "question": "What is the state in reinforcement learning?",
+            "ground_truth_answer": "The state represents the current situation of the agent in reinforcement learning.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "easy"
+        },
+        {
+            "id": 95,
+            "question": "How do SVMs find the decision boundary?",
+            "ground_truth_answer": "Support Vector Machines find the optimal hyperplane to separate classes in the feature space.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 96,
+            "question": "What are the three benefits of RAG mentioned in the documents?",
+            "ground_truth_answer": "The three benefits of RAG are: reducing hallucinations, allowing easy knowledge updates without retraining, and providing source attribution for generated answers.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 97,
+            "question": "Compare classification and regression metrics in machine learning.",
+            "ground_truth_answer": "Classification metrics include accuracy, precision, recall, F1 score, and ROC-AUC, which measure correctness of categorical predictions. Regression metrics include MSE, RMSE, MAE, and R² score, which measure the difference between predicted and actual continuous values.",
+            "expected_sources": [
+                "machine_learning_intro.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 98,
+            "question": "What NLP evaluation approaches are described in the documents?",
+            "ground_truth_answer": "NLP evaluation includes intrinsic metrics (perplexity, BLEU score, ROUGE score) and extrinsic metrics (task-specific accuracy, F1, and human evaluation which is the gold standard).",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "medium"
+        },
+        {
+            "id": 99,
+            "question": "How do the concepts of machine learning and NLP overlap according to the documents?",
+            "ground_truth_answer": "The documents show overlap in several areas: deep learning architectures like RNNs and Transformers are discussed in both contexts, neural networks are common to both fields, and evaluation metrics are important in both ML and NLP. Deep learning has achieved success in NLP, and transformer-based models like BERT and GPT have revolutionized NLP.",
+            "expected_sources": [
+                "machine_learning_intro.md",
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
+        },
+        {
+            "id": 100,
+            "question": "Explain the complete pipeline from document to answer in a RAG system based on the documents.",
+            "ground_truth_answer": "Based on the documents, a RAG system first retrieves relevant documents from a knowledge base given a user query, then augments the input prompt with the retrieved context, and finally generates an answer grounded in the retrieved information. This reduces hallucinations, allows easy knowledge updates without retraining, and provides source attribution for generated answers.",
+            "expected_sources": [
+                "nlp_overview.md"
+            ],
+            "difficulty": "hard"
         }
     ]
 }
