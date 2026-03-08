@@ -2,7 +2,7 @@
 
 Production-grade RAG system with React frontend, FastAPI backend, ChromaDB vector store, and PostgreSQL logging.
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Fastest Way (Windows)
 1. **Double-click:** `start_backend.bat` → Wait 10-60 seconds
@@ -21,21 +21,7 @@ cd C:\AskMyDoc\frontend
 npm run dev
 ```
 
-## 📚 Documentation
-
-- **[START_HERE.md](START_HERE.md)** - Quick start guide
-- **[STARTUP_GUIDE.md](STARTUP_GUIDE.md)** - Detailed instructions
-- **[FINAL_STATUS.md](FINAL_STATUS.md)** - Complete system status
-
-## ✅ System Status
-
-- ✅ Backend API (FastAPI + PyTorch)
-- ✅ Frontend UI (React + TypeScript + Vite)
-- ✅ Vector Store (ChromaDB - 8 documents indexed)
-- ✅ Database (PostgreSQL logging)
-- ✅ All dependencies installed
-
-## 🎯 Features
+##  Features
 
 ### Frontend (http://localhost:3000)
 - **Query Interface** - Ask questions, get AI-generated answers
@@ -49,16 +35,8 @@ npm run dev
 - **AI Embeddings** - sentence-transformers (all-MiniLM-L6-v2)
 - **PostgreSQL Logging** - Query and error tracking
 
-## 🧪 Testing
 
-```powershell
-# Run integration test
-python test_integration.py
-
-# Expected: 6/6 tests passing
-```
-
-## 📊 Architecture
+##  Architecture
 
 ```
 Browser (localhost:3000)
@@ -70,7 +48,7 @@ Backend (FastAPI)
 ChromaDB (Vector Store) + PostgreSQL (Logs)
 ```
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React 19.2
@@ -88,7 +66,7 @@ ChromaDB (Vector Store) + PostgreSQL (Logs)
 - ChromaDB
 - PostgreSQL
 
-## 📝 Configuration
+##  Configuration
 
 ### Ports
 - Frontend: 3000
@@ -99,34 +77,20 @@ ChromaDB (Vector Store) + PostgreSQL (Logs)
 - Backend: `.env` (root directory)
 - Frontend: `frontend/.env.local`
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Backend takes too long?
 - **Normal:** 10-60 seconds (loading AI models)
 - **First time:** May download model (~90 MB)
 - **Subsequent:** Loads from cache
 
-### Port already in use?
-```powershell
-# Find process
-netstat -ano | findstr :8000
-
-# Kill process
-Stop-Process -Id <PID> -Force
-```
-
-### Need to reinstall PyTorch?
-```powershell
-pip install torch --index-url https://download.pytorch.org/whl/cpu
-```
-
-## 📖 API Documentation
+##  API Documentation
 
 Once backend is running, visit:
 - **Interactive docs:** http://localhost:8000/docs
 - **Health check:** http://localhost:8000/health
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```
 C:\AskMyDoc\
@@ -141,40 +105,22 @@ C:\AskMyDoc\
 └── chroma_db\                 # Vector database storage
 ```
 
-## 💡 Key Points
+##  Key Points
 
-- **No reinstallation needed** - All dependencies are installed
 - **PyTorch is permanent** - Installed in `.venv`, no need to reinstall
-- **Startup time is normal** - 10-60 seconds for AI model loading
 - **Keep backend running** - Faster for subsequent uses
 
-## 🎓 Usage
+##  Usage
 
 1. **Upload documents** via Upload tab
 2. **Query your data** via Query tab
 3. **View metrics** via Metrics tab
 
-## 📦 Dependencies
-
-All dependencies are installed in:
-- Python: `.venv\Lib\site-packages\`
-- Node: `frontend\node_modules\`
-
-No need to reinstall unless you delete these directories.
-
-## 🤝 Support
-
-See documentation files for detailed help:
-- Quick start: `START_HERE.md`
-- Detailed guide: `STARTUP_GUIDE.md`
-- System status: `FINAL_STATUS.md`
-- PyTorch issues: `BACKEND_PYTORCH_ISSUE.md`
-
-## 📄 License
+##  License
 
 MIT License
 
-## 🎉 Ready to Use!
+##  Ready to Use!
 
 Everything is set up. Just start the services and begin using your RAG system!
 
@@ -189,4 +135,4 @@ start_frontend.bat
 http://localhost:3000
 ```
 
-**Enjoy!** 🚀
+**Enjoy!** 
