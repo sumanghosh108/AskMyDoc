@@ -7,6 +7,7 @@ chroma_db/
 
 # logs
 logs/
+*.log
 
 # Python
 __pycache__/
