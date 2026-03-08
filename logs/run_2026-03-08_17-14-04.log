@@ -1,4 +1,0 @@
-{"event": "Starting FastAPI server", "filename": "main.py", "func_name": "main", "host": "0.0.0.0", "level": "info", "lineno": 262, "logger": "__main__", "port": 8000, "run_id": "2026-03-08_17-14-04", "timestamp": "2026-03-08T11:44:04.597299Z"}
-{"event": "2 changes detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:44:05.109802Z"}
-{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:44:05.463360Z"}
-{"event": "1 change detected", "filename": "main.py", "func_name": "_log_changes", "level": "info", "lineno": 308, "logger": "watchfiles.main", "timestamp": "2026-03-08T11:44:14.107792Z"}
