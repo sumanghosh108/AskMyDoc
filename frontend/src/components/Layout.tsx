@@ -25,13 +25,13 @@ export default function Layout() {
   };
 
   const navigation = [
-    { name: 'Query', href: '/' },
-    { name: 'Upload', href: '/upload' },
-    { name: 'Metrics', href: '/metrics' },
+    { name: 'Query', href: '/app' },
+    { name: 'Upload', href: '/app/upload' },
+    { name: 'Metrics', href: '/app/metrics' },
   ];
 
   const isActive = (href: string) => {
-    if (href === '/') return location.pathname === '/';
+    if (href === '/app') return location.pathname === '/app';
     return location.pathname.startsWith(href);
   };
 
@@ -44,7 +44,9 @@ export default function Layout() {
             {/* Logo and Desktop Navigation */}
             <div className="flex items-center gap-8">
               <div className="flex items-center">
-                <h1 className="text-xl font-bold text-primary-600">AskMyDoc</h1>
+                <Link to="/" className="text-xl font-bold text-primary-600 hover:text-primary-700 transition-colors">
+                  AskMyDoc
+                </Link>
               </div>
               
               {/* Desktop Navigation */}

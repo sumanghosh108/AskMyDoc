@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Layout from '@/components/Layout';
-import { QueryPage, UploadPage, MetricsPage } from '@/pages';
+import { LandingPage, QueryPage, UploadPage, MetricsPage } from '@/pages';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/app" element={<Layout />}>
           <Route index element={<QueryPage />} />
           <Route path="upload" element={<UploadPage />} />
           <Route path="metrics" element={<MetricsPage />} />
