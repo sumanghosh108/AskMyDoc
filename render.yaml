@@ -1,0 +1,72 @@
+# ============================================
+# Render Blueprint - AskMyDoc Backend
+# ============================================
+# Deploy: Connect GitHub repo → Render auto-detects this file
+# Frontend is deployed separately on Vercel
+
+services:
+  # ==========================================
+  # Backend: FastAPI + ChromaDB
+  # ==========================================
+  - type: web
+    name: askmydoc-api
+    runtime: docker
+    plan: starter  # $7/mo — or use "free" for testing
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      # Groq LLM (free tier)
+      - key: GROQ_API_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: LLM_MODEL
+        value: llama-3.3-70b-versatile
+
+      # Supabase
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+
+      # ChromaDB — persistent disk mounted at /data
+      - key: CHROMA_PERSIST_DIR
+        value: /data/chroma_db
+      - key: CHROMA_COLLECTION_NAME
+        value: ask_my_doc
+
+      # Models (local, no API needed)
+      - key: EMBEDDING_MODEL
+        value: all-MiniLM-L6-v2
+      - key: RERANKER_MODEL
+        value: cross-encoder/ms-marco-MiniLM-L-6-v2
+
+      # Chunking
+      - key: CHUNK_SIZE
+        value: "600"
+      - key: CHUNK_OVERLAP
+        value: "100"
+
+      # Retrieval
+      - key: TOP_K
+        value: "5"
+      - key: TOP_K_INITIAL
+        value: "20"
+
+      # Context
+      - key: MAX_CONTEXT_TOKENS
+        value: "4000"
+
+      # Features (disabled by default)
+      - key: CACHE_ENABLED
+        value: "false"
+      - key: MULTI_HOP_ENABLED
+        value: "false"
+      - key: QUERY_REWRITING_ENABLED
+        value: "false"
+
+    disk:
+      name: chromadb-data
+      mountPath: /data
+      sizeGB: 1  # Increase as needed
