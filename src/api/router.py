@@ -1,4 +1,5 @@
 import time
+import threading
 from contextlib import asynccontextmanager
 from typing import Callable
 
@@ -13,13 +14,9 @@ from src.core.config import validate_config
 log = get_logger(__name__)
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Initialize resources on startup, clean up on shutdown."""
-    log.info("Setting up Ask My Doc API...")
+def _background_init():
+    """Heavy initialization in background thread so port binds immediately."""
     try:
-        validate_config()
-
         # Initialize Supabase database connection
         from database.db_initializer import initialize_database
         try:
@@ -46,6 +43,22 @@ async def lifespan(app: FastAPI):
         from src.indexing.ingest import get_vector_store
         get_vector_store()
         log.info("Vector store initialized")
+    except Exception as e:
+        log.error("Background initialization failed", error=str(e))
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Initialize resources on startup, clean up on shutdown."""
+    log.info("Setting up Ask My Doc API...")
+    try:
+        validate_config()
+
+        # Run heavy init in background so Render detects the open port quickly
+        init_thread = threading.Thread(target=_background_init, daemon=True)
+        init_thread.start()
+        log.info("Background initialization started, server is accepting requests")
+
         yield
     except Exception as e:
         log.error("Failed to initialize API", error=str(e))
