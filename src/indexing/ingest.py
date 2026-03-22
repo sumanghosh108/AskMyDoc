@@ -27,7 +27,6 @@ from src.core.config import (
     CHROMA_PERSIST_DIR,
     CHROMA_COLLECTION_NAME,
     EMBEDDING_MODEL,
-    GOOGLE_API_KEY,
 )
 from src.utils.logger import get_logger
 from src.utils.exceptions import (

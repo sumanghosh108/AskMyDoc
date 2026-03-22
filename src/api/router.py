@@ -19,30 +19,29 @@ async def lifespan(app: FastAPI):
     log.info("Setting up Ask My Doc API...")
     try:
         validate_config()
-        
-        # Initialize database
+
+        # Initialize Supabase database connection
         from database.db_initializer import initialize_database
         try:
             db_result = initialize_database()
-            
+
             if db_result['success']:
                 log.info(
-                    "Database initialized successfully",
-                    database_created=db_result.get('database_created', False),
-                    tables_created=db_result.get('tables_created', False),
-                    table_count=len(db_result.get('verification', {}).get('tables', []))
+                    "Supabase database verified",
+                    tables_found=len(db_result.get('verification', {}).get('tables', [])),
+                    missing_tables=db_result.get('verification', {}).get('missing_tables', []),
                 )
             else:
                 log.warning(
-                    "Database initialization failed, continuing without PostgreSQL logging",
+                    "Supabase verification failed, continuing without database logging",
                     error=db_result.get('error', 'Unknown error')
                 )
         except Exception as db_error:
             log.warning(
-                "Database initialization failed, continuing without PostgreSQL logging",
+                "Database initialization failed, continuing without logging",
                 error=str(db_error)
             )
-        
+
         # Pre-connect to ChromaDB so it's ready
         from src.indexing.ingest import get_vector_store
         get_vector_store()
@@ -53,29 +52,23 @@ async def lifespan(app: FastAPI):
         raise e
     finally:
         log.info("Shutting down Ask My Doc API...")
-        
-        # Close database connections
-        try:
-            from database.postgres_client import get_client
-            client = get_client()
-            if hasattr(client, 'close_all_connections'):
-                client.close_all_connections()
-                log.info("Database connections closed")
-        except Exception as e:
-            log.warning("Error closing database connections", error=str(e))
 
 
 app = FastAPI(
     title="Ask My Doc",
     description="Production Retrieval-Augmented Generation API",
-    version="1.0.0",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
 # Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "*",  # Allow all origins for Render deployment
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -88,23 +81,23 @@ async def log_requests(request: Request, call_next: Callable):
     # Skip logging for health checks to reduce log noise
     if request.url.path == "/health":
         return await call_next(request)
-    
+
     start_time = time.time()
-    
+
     # Generate request trace
     logger = log.bind(
         path=request.url.path,
         method=request.method,
         client=request.client.host if request.client else "unknown"
     )
-    
+
     logger.info("Request started")
-    
+
     try:
         response = await call_next(request)
         process_time = time.time() - start_time
         logger.info(
-            "Request completed", 
+            "Request completed",
             status_code=response.status_code,
             latency_seconds=round(process_time, 4)
         )
@@ -112,7 +105,7 @@ async def log_requests(request: Request, call_next: Callable):
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
-            "Request failed", 
+            "Request failed",
             error=str(e),
             latency_seconds=round(process_time, 4)
         )
@@ -121,27 +114,33 @@ async def log_requests(request: Request, call_next: Callable):
 
 @app.get("/health", tags=["System"])
 async def health_check(request: Request):
-    """Health check endpoint with database status."""
+    """Health check endpoint with Supabase database status."""
     from database.db_initializer import verify_database_setup
-    
+
     health_status = {
         "status": "ok",
         "service": "ask_my_doc_api",
+        "version": "2.0.0",
         "database": "unknown"
     }
-    
+
     try:
-        db_verification = verify_database_setup(db_name="AskMyDocLOG", silent=True)
+        db_verification = verify_database_setup(silent=True)
         if db_verification.get("status") == "healthy":
             health_status["database"] = "healthy"
+            health_status["database_provider"] = "supabase"
             health_status["database_tables"] = len(db_verification.get("tables", []))
+        elif db_verification.get("status") == "partial":
+            health_status["database"] = "partial"
+            health_status["database_provider"] = "supabase"
+            health_status["missing_tables"] = db_verification.get("missing_tables", [])
         else:
             health_status["database"] = "unhealthy"
             health_status["database_error"] = db_verification.get("error")
     except Exception as e:
         health_status["database"] = "error"
         health_status["database_error"] = str(e)
-    
+
     return health_status
 
 
@@ -149,10 +148,10 @@ async def health_check(request: Request):
 async def ingest_documents_endpoint(request: IngestRequest):
     """Ingest documents into the vector store from file paths or URLs."""
     from src.indexing.ingest import ingest_documents
-    
+
     start_time = time.time()
     total_chunks = 0
-    
+
     for source in request.sources:
         try:
             count = ingest_documents(
@@ -164,7 +163,7 @@ async def ingest_documents_endpoint(request: IngestRequest):
         except Exception as e:
             logger = get_logger(__name__)
             logger.error("API ingestion failed for source", source=source, error=str(e))
-            
+
             # Log error to database
             try:
                 from database.error_logger import get_error_logger
@@ -177,12 +176,12 @@ async def ingest_documents_endpoint(request: IngestRequest):
                 )
             except Exception as log_error:
                 logger.error("Error logging failed", error=str(log_error))
-            
+
             return JSONResponse(
-                status_code=500, 
+                status_code=500,
                 content={"detail": f"Failed to ingest '{source}': {str(e)}"}
             )
-    
+
     # Log successful ingestion
     try:
         from database.query_logger import get_query_logger
@@ -196,7 +195,7 @@ async def ingest_documents_endpoint(request: IngestRequest):
     except Exception as e:
         logger = get_logger(__name__)
         logger.error("Ingestion logging failed", error=str(e))
-    
+
     return IngestResponse(
         status="success",
         chunks_ingested=total_chunks,
@@ -208,7 +207,7 @@ async def ingest_documents_endpoint(request: IngestRequest):
 async def upload_and_ingest_file(file: UploadFile = File(...)):
     """
     Upload a file and ingest it into the vector store.
-    
+
     Supports: PDF, Markdown (.md), and Text (.txt) files.
     Maximum file size: 10 MB
     """
@@ -217,32 +216,32 @@ async def upload_and_ingest_file(file: UploadFile = File(...)):
     import os
     from pathlib import Path
     from src.indexing.ingest import ingest_documents
-    
+
     logger = get_logger(__name__)
     start_time = time.time()
-    
+
     # Validate file type
     allowed_extensions = {".pdf", ".md", ".markdown", ".txt"}
     file_ext = Path(file.filename).suffix.lower()
-    
+
     if file_ext not in allowed_extensions:
         return JSONResponse(
             status_code=400,
             content={"detail": f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"}
         )
-    
+
     # Validate file size (10 MB limit)
     max_size = 10 * 1024 * 1024  # 10 MB in bytes
     file.file.seek(0, 2)  # Seek to end
     file_size = file.file.tell()
     file.file.seek(0)  # Reset to beginning
-    
+
     if file_size > max_size:
         return JSONResponse(
             status_code=413,
             content={"detail": f"File too large: {file_size / 1024 / 1024:.2f} MB. Maximum: 10 MB"}
         )
-    
+
     # Create temporary file
     temp_file = None
     try:
@@ -250,24 +249,24 @@ async def upload_and_ingest_file(file: UploadFile = File(...)):
         with tempfile.NamedTemporaryFile(delete=False, suffix=file_ext) as tmp:
             shutil.copyfileobj(file.file, tmp)
             temp_file = tmp.name
-        
+
         logger.info(
             "File uploaded to temp location",
             filename=file.filename,
             size_mb=file_size / 1024 / 1024,
             temp_path=temp_file
         )
-        
+
         # Ingest the file
         try:
             count = ingest_documents(temp_file)
-            
+
             logger.info(
                 "File ingested successfully",
                 filename=file.filename,
                 chunks=count
             )
-            
+
             # Log successful ingestion to database
             try:
                 from database.query_logger import get_query_logger
@@ -280,13 +279,13 @@ async def upload_and_ingest_file(file: UploadFile = File(...)):
                 )
             except Exception as log_error:
                 logger.error("Ingestion logging failed", error=str(log_error))
-            
+
             return IngestResponse(
                 status="success",
                 chunks_ingested=count,
                 sources=[file.filename]
             )
-            
+
         except Exception as e:
             # Extract original error if this is a wrapped exception
             error_details = {"error": str(e)}
@@ -295,9 +294,9 @@ async def upload_and_ingest_file(file: UploadFile = File(...)):
                 error_details["original_error_type"] = type(e.original_error).__name__
             if hasattr(e, 'details'):
                 error_details["details"] = e.details
-            
+
             logger.error("File ingestion failed", filename=file.filename, **error_details)
-            
+
             # Log error to database
             try:
                 from database.error_logger import get_error_logger
@@ -310,12 +309,12 @@ async def upload_and_ingest_file(file: UploadFile = File(...)):
                 )
             except Exception as log_error:
                 logger.error("Error logging failed", error=str(log_error))
-            
+
             return JSONResponse(
                 status_code=500,
                 content={"detail": f"Failed to ingest file: {str(e)}"}
             )
-    
+
     finally:
         # Clean up temporary file
         if temp_file and os.path.exists(temp_file):
@@ -330,7 +329,7 @@ async def upload_and_ingest_file(file: UploadFile = File(...)):
 async def query_endpoint(request: QueryRequest):
     """Query the RAG system and generate an answer with all production features."""
     from src.generation.enhanced_generator import generate_answer_enhanced
-    
+
     try:
         result = generate_answer_enhanced(
             request.question,
@@ -338,7 +337,7 @@ async def query_endpoint(request: QueryRequest):
             use_hybrid=request.use_hybrid,
             use_reranker=request.use_reranker,
         )
-        
+
         return QueryResponse(
             answer=result["answer"],
             sources=[SourceMeta(**s) for s in result["sources"]],
@@ -347,7 +346,7 @@ async def query_endpoint(request: QueryRequest):
     except Exception as e:
         logger = get_logger(__name__)
         logger.error("API query failed", query=request.question, error=str(e))
-        
+
         # Log error to database
         try:
             from database.error_logger import get_error_logger
@@ -361,7 +360,7 @@ async def query_endpoint(request: QueryRequest):
             )
         except Exception as log_error:
             logger.error("Error logging failed", error=str(log_error))
-        
+
         return JSONResponse(
             status_code=500,
             content={"detail": f"Query generation failed: {str(e)}"}
@@ -372,10 +371,10 @@ async def query_endpoint(request: QueryRequest):
 async def cache_stats():
     """Get cache statistics."""
     from src.caching import get_cache
-    
+
     cache = get_cache()
     stats = cache.get_stats()
-    
+
     return {"cache_stats": stats}
 
 
@@ -383,10 +382,10 @@ async def cache_stats():
 async def clear_cache():
     """Clear all cached data."""
     from src.caching import get_cache
-    
+
     cache = get_cache()
     success = cache.clear_all()
-    
+
     if success:
         return {"status": "success", "message": "Cache cleared"}
     else:
@@ -402,11 +401,11 @@ async def pipeline_metrics():
     from src.observability import get_metrics
     from src.caching import get_cache
     from src.indexing.ingest import get_vector_store
-    
+
     # Get pipeline metrics
     metrics = get_metrics()
     stats = metrics.get_stats()
-    
+
     # Get cache stats
     cache_hit_rate = 0.0
     cache_stats_data = None
@@ -425,7 +424,7 @@ async def pipeline_metrics():
             }
     except Exception as e:
         log.warning("Failed to get cache stats", error=str(e))
-    
+
     # Get vector store document count
     vector_store_docs = 0
     try:
@@ -434,7 +433,7 @@ async def pipeline_metrics():
         vector_store_docs = collection.count()
     except Exception as e:
         log.warning("Failed to get vector store count", error=str(e))
-    
+
     # Transform to frontend format
     if "error" in stats:
         # No executions yet
@@ -451,8 +450,8 @@ async def pipeline_metrics():
             "cacheHitRate": cache_hit_rate,
             "vectorStoreDocs": vector_store_docs
         }
-    
+
     if cache_stats_data:
         response["cacheStats"] = cache_stats_data
-    
+
     return response

@@ -2,20 +2,22 @@
 Answer generation module.
 Loads versioned prompts, builds LLM chain, generates cited answers.
 Supports both basic vector retrieval and hybrid retrieval + reranking.
+
+Uses Groq (free tier) for LLM inference.
 """
 
 from pathlib import Path
 from typing import Optional
 
 import yaml
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.documents import Document
 
 from src.core.config import (
     LLM_MODEL,
-    OPENROUTER_API_KEY,
+    GROQ_API_KEY,
     get_prompt_config_path,
 )
 from src.retrieval.base import retrieve_chunks, format_context
@@ -34,7 +36,9 @@ def _load_prompts(config_path: Optional[Path] = None) -> dict:
 
 def build_chain(prompts: Optional[dict] = None):
     """
-    Build the generation chain: prompt → LLM → output parser.
+    Build the generation chain: prompt -> LLM -> output parser.
+
+    Uses Groq API with free-tier models (e.g., llama-3.3-70b-versatile).
 
     Returns:
         A LangChain runnable chain.
@@ -47,15 +51,10 @@ def build_chain(prompts: Optional[dict] = None):
         ("human", prompts["user"]),
     ])
 
-    llm = ChatOpenAI(
+    llm = ChatGroq(
         model=LLM_MODEL,
         temperature=0.1,
-        api_key=OPENROUTER_API_KEY,
-        base_url="https://openrouter.ai/api/v1",
-        default_headers={
-            "HTTP-Referer": "http://localhost:3000",
-            "X-Title": "Ask My Doc",
-        }
+        api_key=GROQ_API_KEY,
     )
 
     chain = prompt | llm | StrOutputParser()
@@ -112,7 +111,7 @@ def generate_answer(
     context = format_context(retrieved_docs)
 
     # Generate
-    log.info("Invoking LLM chain")
+    log.info("Invoking LLM chain (Groq)")
     chain = build_chain()
     answer = chain.invoke({
         "context": context,

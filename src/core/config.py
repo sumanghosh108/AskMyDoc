@@ -14,8 +14,12 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 
 # --- API Keys ---
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+
+# --- Supabase ---
+SUPABASE_URL = os.getenv("SUPABASE_URL", "")
+SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
+SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY", "")
 
 # --- Chunking ---
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "600"))
@@ -26,14 +30,15 @@ TOP_K = int(os.getenv("TOP_K", "5"))
 TOP_K_INITIAL = int(os.getenv("TOP_K_INITIAL", "20"))  # Before reranking
 
 # --- ChromaDB ---
+# Local dev: "chroma_db" | Render with mounted disk: "/data/chroma_db"
 CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", str(PROJECT_ROOT / "chroma_db"))
 CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "ask_my_doc")
 
 # --- Models ---
-# Using local sentence-transformers for embeddings to avoid API limitations/errors
+# Using local sentence-transformers for embeddings
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
-# Using OpenRouter for the LLM
-LLM_MODEL = os.getenv("LLM_MODEL", "stepfun/step-3.5-flash")
+# Using Groq for the LLM (free tier)
+LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
 
 # --- Prompts ---
 PROMPT_VERSION = os.getenv("PROMPT_VERSION", "v1")
@@ -72,7 +77,11 @@ def get_prompt_config_path() -> Path:
 def validate_config():
     """Validate that required configuration is set."""
     errors = []
-    if not OPENROUTER_API_KEY:
-        errors.append("OPENROUTER_API_KEY is not set. Add it to your .env file.")
+    if not GROQ_API_KEY:
+        errors.append("GROQ_API_KEY is not set. Add it to your .env file.")
+    if not SUPABASE_URL:
+        errors.append("SUPABASE_URL is not set. Add it to your .env file.")
+    if not SUPABASE_SERVICE_ROLE_KEY:
+        errors.append("SUPABASE_SERVICE_ROLE_KEY is not set. Add it to your .env file.")
     if errors:
         raise EnvironmentError("\n".join(errors))

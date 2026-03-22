@@ -13,7 +13,7 @@ import sys
 import json
 import uvicorn
 
-from src.core.config import validate_config
+from src.core.config import validate_config, LLM_MODEL
 from src.utils.logger import get_logger
 
 log = get_logger(__name__)

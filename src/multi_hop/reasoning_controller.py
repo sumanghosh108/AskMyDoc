@@ -4,12 +4,12 @@ Detects when additional context is needed and triggers iterative retrieval.
 """
 
 from typing import Optional
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.documents import Document
 
-from src.core.config import LLM_MODEL, OPENROUTER_API_KEY
+from src.core.config import LLM_MODEL, GROQ_API_KEY
 from src.utils.logger import get_logger
 
 log = get_logger(__name__)
@@ -39,18 +39,13 @@ class MultiHopController:
         self.min_confidence = min_confidence
         self._llm = None
 
-    def _get_llm(self) -> ChatOpenAI:
+    def _get_llm(self) -> ChatGroq:
         """Lazy-load the LLM."""
         if self._llm is None:
-            self._llm = ChatOpenAI(
+            self._llm = ChatGroq(
                 model=self.model_name,
                 temperature=0.1,
-                api_key=OPENROUTER_API_KEY,
-                base_url="https://openrouter.ai/api/v1",
-                default_headers={
-                    "HTTP-Referer": "http://localhost:3000",
-                    "X-Title": "Ask My Doc - Multi-Hop Controller",
-                }
+                api_key=GROQ_API_KEY,
             )
         return self._llm
 

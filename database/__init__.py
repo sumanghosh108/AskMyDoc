@@ -1,15 +1,15 @@
 """
 Database Package
-Production-grade PostgreSQL logging and observability system for RAG platform
+Production-grade Supabase logging and observability system for RAG platform
 """
 
-from .postgres_client import PostgresClient
+from .supabase_client import SupabaseClient
 from .query_logger import QueryLogger
 from .error_logger import ErrorLogger
 from .db_initializer import initialize_database
 
 __all__ = [
-    'PostgresClient',
+    'SupabaseClient',
     'QueryLogger',
     'ErrorLogger',
     'initialize_database',
