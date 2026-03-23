@@ -17,7 +17,8 @@ import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'a
  */
 
 // Get configuration from environment variables with defaults
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+// In production, use relative URL (empty string) so requests go through Vercel's rewrites/proxy
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '' : 'http://localhost:8000');
 const TIMEOUT = parseInt(import.meta.env.VITE_API_TIMEOUT || '60000', 10);
 
 // Create Axios instance with base configuration
