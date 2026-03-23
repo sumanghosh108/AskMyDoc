@@ -18,7 +18,6 @@ from langchain_community.document_loaders import (
     TextLoader,
     WebBaseLoader,
 )
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
 from src.core.config import (
@@ -26,13 +25,11 @@ from src.core.config import (
     CHUNK_OVERLAP,
     CHROMA_PERSIST_DIR,
     CHROMA_COLLECTION_NAME,
-    EMBEDDING_MODEL,
 )
 from src.utils.logger import get_logger
 from src.utils.exceptions import (
     DocumentLoadError,
     ChunkingError,
-    EmbeddingError,
     VectorStoreError,
     IngestionError,
 )
@@ -243,27 +240,17 @@ def get_vector_store(persist_directory: Optional[str] = None, collection_name: O
     
     Raises:
         VectorStoreError: If vector store creation fails
-        EmbeddingError: If embedding model loading fails
+        VectorStoreError: If vector store creation fails
     """
     try:
         persist_dir = persist_directory or CHROMA_PERSIST_DIR
         col_name = collection_name or CHROMA_COLLECTION_NAME
 
         try:
-            embeddings = HuggingFaceEmbeddings(
-                model_name=EMBEDDING_MODEL,
-            )
-        except Exception as e:
-            raise EmbeddingError(
-                "Failed to load embedding model",
-                details={"model": EMBEDDING_MODEL},
-                original_error=e
-            )
-
-        try:
+            # Uses ChromaDB's built-in default embedding (all-MiniLM-L6-v2 via onnxruntime)
+            # No local sentence-transformers or PyTorch needed
             vector_store = Chroma(
                 collection_name=col_name,
-                embedding_function=embeddings,
                 persist_directory=persist_dir,
             )
         except Exception as e:
@@ -275,7 +262,7 @@ def get_vector_store(persist_directory: Optional[str] = None, collection_name: O
 
         return vector_store
     
-    except (VectorStoreError, EmbeddingError):
+    except VectorStoreError:
         raise
     except Exception as e:
         raise VectorStoreError(
@@ -331,7 +318,7 @@ def ingest_documents(source: str, chunk_size: Optional[int] = None, chunk_overla
         try:
             vector_store = get_vector_store()
             vector_store.add_documents(chunks)
-        except (VectorStoreError, EmbeddingError) as e:
+        except VectorStoreError as e:
             raise IngestionError(
                 "Vector store operation failed",
                 details={"source": source, "step": "store", "chunk_count": len(chunks)},

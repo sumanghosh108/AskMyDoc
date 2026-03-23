@@ -12,7 +12,6 @@ setup(
     packages=find_packages(),
     install_requires=[
         "chromadb>=0.5.0",
-        "sentence-transformers>=3.0.0",
         "langchain-text-splitters>=0.3.0",
     ],
     python_requires=">=3.9",

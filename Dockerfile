@@ -14,7 +14,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Install system dependencies for sentence-transformers / torch
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
@@ -29,9 +29,8 @@ COPY . .
 # Create /data directory for ChromaDB persistence (Render mounts disk here)
 RUN mkdir -p /data/chroma_db
 
-# Pre-download ML models during build so startup is fast (no network delay)
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')" && \
-    python -c "from sentence_transformers import CrossEncoder; CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')"
+# No local ML models to pre-download — embeddings use ChromaDB's built-in
+# default (onnxruntime), and reranking uses Groq LLM API
 
 # Expose port
 EXPOSE 8000

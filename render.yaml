@@ -36,11 +36,10 @@ services:
       - key: CHROMA_COLLECTION_NAME
         value: ask_my_doc
 
-      # Models (local, no API needed)
+      # Embedding (ChromaDB built-in default)
       - key: EMBEDDING_MODEL
         value: all-MiniLM-L6-v2
-      - key: RERANKER_MODEL
-        value: cross-encoder/ms-marco-MiniLM-L-6-v2
+      # Reranking uses Groq LLM (no local model needed)
 
       # Chunking
       - key: CHUNK_SIZE

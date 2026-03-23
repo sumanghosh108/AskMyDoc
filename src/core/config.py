@@ -35,9 +35,9 @@ CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", str(PROJECT_ROOT / "chroma_
 CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "ask_my_doc")
 
 # --- Models ---
-# Using local sentence-transformers for embeddings
+# Embeddings use ChromaDB's built-in default (all-MiniLM-L6-v2 via onnxruntime)
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
-# Using Groq for the LLM (free tier)
+# Using Groq for the LLM and reranking (free tier)
 LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
 
 # --- Prompts ---
@@ -45,7 +45,7 @@ PROMPT_VERSION = os.getenv("PROMPT_VERSION", "v1")
 PROMPTS_DIR = PROJECT_ROOT / "config"
 
 # --- Reranker ---
-RERANKER_MODEL = os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
+# Reranking now uses Groq LLM (no local model needed)
 
 # --- Evaluation ---
 EVAL_THRESHOLD = float(os.getenv("EVAL_THRESHOLD", "0.7"))

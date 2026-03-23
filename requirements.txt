@@ -3,12 +3,11 @@ python-multipart>=0.0.9
 langchain>=0.3.0
 langchain-community>=0.3.0
 langchain-text-splitters>=0.3.0
-langchain-huggingface>=0.1.0
 
-# LLM - Groq (Free Tier)
+# LLM - Groq (Free Tier, also used for reranking)
 langchain-groq>=0.2.0
 
-# Vector Store
+# Vector Store (ChromaDB handles embeddings via built-in default)
 chromadb>=0.5.0
 langchain-chroma>=0.2.0
 
@@ -33,9 +32,6 @@ structlog>=24.0.0
 
 # Hybrid Retrieval
 rank-bm25>=0.2.2
-
-# Reranking
-sentence-transformers>=3.0.0
 
 # Evaluation
 ragas>=0.2.0
