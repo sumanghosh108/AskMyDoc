@@ -3,7 +3,10 @@
     "allow": [
       "Bash(.venv/Scripts/pip install:*)",
       "Bash(.venv/Scripts/python -c \":*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git checkout:*)",
+      "Bash(find /c/AskMyDoc -type f -name *.py -o -name *.json -o -name *.yml -o -name *.yaml -o -name *.toml -o -name *.txt -o -name *.md -o -name .env*)",
+      "Bash(du -sh /c/Users/suman/.cache/huggingface/hub/models--*/)"
     ]
   }
 }
