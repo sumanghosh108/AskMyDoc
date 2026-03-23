@@ -6,7 +6,9 @@
       "Bash(npm run:*)",
       "Bash(git checkout:*)",
       "Bash(find /c/AskMyDoc -type f -name *.py -o -name *.json -o -name *.yml -o -name *.yaml -o -name *.toml -o -name *.txt -o -name *.md -o -name .env*)",
-      "Bash(du -sh /c/Users/suman/.cache/huggingface/hub/models--*/)"
+      "Bash(du -sh /c/Users/suman/.cache/huggingface/hub/models--*/)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
